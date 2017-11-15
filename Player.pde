@@ -51,4 +51,9 @@ class Player {
   void fire() {
     bullets.add(new Bullet(x, y, bullet_diameter, 255, bullet_speed));
   }
+  
+  void explode() {
+    exp.add(new Explosion(x, y));
+    end = true;
+  }
 }

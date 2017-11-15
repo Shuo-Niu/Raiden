@@ -10,7 +10,7 @@ class Bullet extends Circle {
   
   @Override
   void update() {
-    y -= speed;
+    y -= yspeed;
     if(!used) {
       for(int i = 0; i < e.size(); i++) {
         if(this.collide(e.get(i))) {
@@ -28,7 +28,7 @@ class Bullet extends Circle {
     if(x <= e.x + 20 && x >= e.x - 20 && y <= e.y && y >= e.y - 20) {
       if(x >= e.x && x + y <= e.x + e.y) {
         return true;
-      } else if(x < e.x && x - (e.x - 20) >= y - (e.y - 20)) {
+      } else if(x < e.x && e.y - y >= e.x - x) {
         return true;
       }
     }

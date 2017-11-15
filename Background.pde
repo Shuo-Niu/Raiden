@@ -1,14 +1,14 @@
 class Background {
   float d = 30;
   Circle[] markers;
-  int numOfMarkers;
+  int num_markers;
   color c = 30;
   float speed = 1.5;
   
   Background() {
-    numOfMarkers = (floor(height/d)+1) * 2;
-    markers = new Circle[numOfMarkers];
-    for(int i = 0; i < numOfMarkers; i+=2) {
+    num_markers = (floor(height/d)+1) * 2;
+    markers = new Circle[num_markers];
+    for(int i = 0; i < num_markers; i+=2) {
       
       markers[i] = new Circle(d, c, speed + speed_offset);
       markers[i].set(d/2, (i/2)*d-d/2);
@@ -19,8 +19,8 @@ class Background {
   
   void update() {
     for(int i = 0; i < markers.length; i+=2) {
-      markers[i].speed = speed + speed_offset;
-      markers[i+1].speed = speed + speed_offset;
+      markers[i].yspeed = speed + speed_offset;
+      markers[i+1].yspeed = speed + speed_offset;
       markers[i].update();
       markers[i+1].update();
       if(markers[i].y >= height + d/2) { // reset

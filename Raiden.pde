@@ -8,6 +8,8 @@ ArrayList<Explosion> exp; // explosion animation
 boolean keys[]; // used to handle simultaneously two keys pressed
 float speed_offset; // for future function, accelerate background and enermy_bullet
 
+boolean end;
+
 void setup() {
   size(400, 600);
   reset();
@@ -19,50 +21,68 @@ void reset() {
   e = new ArrayList<Enermy>();
   e.add(new Enermy());
   e.add(new Enermy());
+  e.add(new Enermy());
+  e.add(new Enermy());
   eb = new ArrayList<EnermyBullet>();
   bullet_diameter = 5;
   bullet_speed = 5;
   exp = new ArrayList<Explosion>();
   keys = new boolean[4];
   speed_offset = 0;
+  end = false;
 }
 
 void draw() {
   background(0);
-  b.update();
-  b.show();
-  p.update();
-  p.show();
-  
-  for(int i = 0; i < e.size(); i++) {
-    e.get(i).update();
-    if(e.get(i).y > height + 20) {
-      e.remove(i);
-      e.add(new Enermy());
+  if(!end) {
+    b.update();
+    b.show();
+    p.update();
+    p.show();
+    
+    for(int i = 0; i < e.size(); i++) {
+      e.get(i).update();
+      if(e.get(i).y > height + 20) {
+        e.remove(i);
+        e.add(new Enermy());
+      }
+      e.get(i).show();
     }
-    e.get(i).show();
-  }
-  
-  for(int i = 0; i < eb.size(); i++) {
-    eb.get(i).update();
-    if(eb.get(i).y > height + eb.get(i).d) {
-      eb.remove(i);
-      i--;
+    
+    for(int i = 0; i < eb.size(); i++) {
+      eb.get(i).update();
+      if(eb.get(i).y > height + eb.get(i).d) {
+        eb.remove(i);
+        i--;
+      } else {
+        eb.get(i).show();
+      }    
+    }
+    
+    for(int i = 0; i < exp.size(); i++) {
+      exp.get(i).update();
+      if(exp.get(i).state == 8) {
+        exp.remove(i);
+        i--;
+      } else {
+        exp.get(i).show();
+      }
+    }
+  } else { // lost game
+    if(!exp.isEmpty()) { // finish all explosion animations
+      for(int i = 0; i < exp.size(); i++) {
+        exp.get(i).update();
+        if(exp.get(i).state == 8) {
+          exp.remove(i);
+          i--;
+        } else {
+          exp.get(i).show();
+        }
+      }
     } else {
-      eb.get(i).show();
-    }    
-  }
-  
-  for(int i = 0; i < exp.size(); i++) {
-    exp.get(i).update();
-    if(exp.get(i).state == 8) {
-      exp.remove(i);
-      i--;
-    } else {
-      exp.get(i).show();
+      reset();
     }
   }
-  println(exp.size());
 }
 
 void keyReleased() {
@@ -95,5 +115,8 @@ void keyPressed() {
   }
   if(key == ' ') {
     p.fire();
+  }
+  if(key == 'r') {
+    reset();
   }
 }
