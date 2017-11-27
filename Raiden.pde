@@ -1,12 +1,14 @@
 Background b; // performs as landmark, indicating forwarding
 Player p;
-ArrayList<Enermy> e;
+ArrayList<Pattern> ptn;
 ArrayList<EnermyBullet> eb; // EnermyBullet cannot belong to Enermy instances
 float bullet_diameter;
 float bullet_speed;
 ArrayList<Explosion> exp; // explosion animation
 boolean keys[]; // used to handle simultaneously two keys pressed
 float speed_offset; // for future function, accelerate background and enermy_bullet
+int time;
+int new_pattern_interval;
 
 boolean end;
 
@@ -18,17 +20,15 @@ void setup() {
 void reset() {
   b = new Background();
   p = new Player(width/2, height*2/3);
-  e = new ArrayList<Enermy>();
-  e.add(new Enermy());
-  e.add(new Enermy());
-  e.add(new Enermy());
-  e.add(new Enermy());
+  ptn = new ArrayList<Pattern>();
   eb = new ArrayList<EnermyBullet>();
   bullet_diameter = 5;
   bullet_speed = 5;
   exp = new ArrayList<Explosion>();
   keys = new boolean[4];
   speed_offset = 0;
+  new_pattern_interval = 1500;
+  time = millis() - new_pattern_interval;
   end = false;
 }
 
@@ -40,13 +40,19 @@ void draw() {
     p.update();
     p.show();
     
-    for(int i = 0; i < e.size(); i++) {
-      e.get(i).update();
-      if(e.get(i).y > height + 20) {
-        e.remove(i);
-        e.add(new Enermy());
+    if(millis() - time > new_pattern_interval) {
+      ptn.add(new Pattern());
+      time = millis();
+    }
+    
+    for(int i = 0; i < ptn.size(); i++) {
+      ptn.get(i).update();
+      if(ptn.get(i).e.size() == 0) {
+        ptn.remove(i);
+        i--;
+      } else {
+        ptn.get(i).show();
       }
-      e.get(i).show();
     }
     
     for(int i = 0; i < eb.size(); i++) {

@@ -19,8 +19,8 @@ class Background {
   
   void update() {
     for(int i = 0; i < markers.length; i+=2) {
-      markers[i].yspeed = speed + speed_offset;
-      markers[i+1].yspeed = speed + speed_offset;
+      markers[i].y_speed = speed + speed_offset;
+      markers[i+1].y_speed = speed + speed_offset;
       markers[i].update();
       markers[i+1].update();
       if(markers[i].y >= height + d/2) { // reset

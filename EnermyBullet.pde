@@ -8,7 +8,7 @@ class EnermyBullet extends Circle {
   
   @Override
   void update() {
-    y += yspeed;
+    y += y_speed;
     if(this.collide(p)) {
       p.explode();
     }

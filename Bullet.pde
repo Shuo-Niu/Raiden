@@ -10,15 +10,17 @@ class Bullet extends Circle {
   
   @Override
   void update() {
-    y -= yspeed;
+    y -= y_speed;
     if(!used) {
-      for(int i = 0; i < e.size(); i++) {
-        if(this.collide(e.get(i))) {
-          used = true;
-          e.get(i).explode();
-          e.remove(i);
-          e.add(new Enermy());
-          this.c = 0;
+      for(int ptnnum = 0; ptnnum < ptn.size(); ptnnum++) {
+        for(int i = 0; i < ptn.get(ptnnum).e.size(); i++) {
+          if(this.collide(ptn.get(ptnnum).e.get(i))) {
+            used = true;
+            ptn.get(ptnnum).e.get(i).explode();
+            ptn.get(ptnnum).e.remove(i);
+            //ptn.e.add(new Enermy());
+            this.c = 0;
+          }
         }
       }
     }

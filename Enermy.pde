@@ -1,20 +1,29 @@
 class Enermy {
   float x, y;
   color c;
-  float yspeed;
+  float x_speed;
+  float y_speed;
+  int firing_interval; // ms
   int time; // used to determine firing time
-  int firing_interval = 1000; // ms
   
-  Enermy() {
-    x = random(20, width-20);
-    y = 0;
-    c = color(255, 0, 0);
-    yspeed = 2;
+  Enermy(float xx, float yy, color cc, float xspeed, float yspeed, int interval) {
+    //x = random(20, width-20);
+    x = xx;
+    y = yy;
+    c = cc;
+    x_speed = xspeed;
+    y_speed = yspeed;
+    firing_interval = interval;
     time = millis() - firing_interval/2;
   }
   
   void update() {
-    y += yspeed;
+    x += x_speed;
+    if(x > width - 20 || x < 20) {
+      x_speed *= -1;
+    }
+    
+    y += y_speed;
     if(millis() - time >= firing_interval) {
       fire();
       time = millis();

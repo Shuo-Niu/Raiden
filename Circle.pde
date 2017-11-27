@@ -3,12 +3,12 @@ class Circle {
   float y;
   float d;
   float c; // color
-  float yspeed;
+  float y_speed;
   
   Circle(float diameter, color c, float speed) {
     d = diameter;
     this.c = c;
-    yspeed = speed;
+    y_speed = speed;
   }
   
   void set(float x, float y) {
@@ -17,7 +17,7 @@ class Circle {
   }
   
   void update() {
-    y += yspeed;
+    y += y_speed;
   }
   
   void show() {
