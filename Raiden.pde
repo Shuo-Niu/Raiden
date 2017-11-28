@@ -10,6 +10,9 @@ float speed_offset; // for future function, accelerate background and enermy_bul
 int time;
 int new_pattern_interval;
 
+int clock;
+int score;
+
 boolean end;
 
 void setup() {
@@ -29,11 +32,25 @@ void reset() {
   speed_offset = 0;
   new_pattern_interval = 1500;
   time = millis() - new_pattern_interval;
+  clock = millis();
   end = false;
 }
 
 void draw() {
   background(0);
+  
+  // display score
+  score = (millis() - clock) / 1000;
+  String s = "";
+  if(score < 10) {
+    s += "0" + score;
+  } else {
+    s += score;
+  }
+  fill(20);
+  textSize(250);
+  text(s, 43, 400);
+   
   if(!end) {
     b.update();
     b.show();
