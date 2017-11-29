@@ -10,17 +10,17 @@ class Background {
     markers = new Circle[num_markers];
     for(int i = 0; i < num_markers; i+=2) {
       
-      markers[i] = new Circle(d, c, speed + speed_offset);
+      markers[i] = new Circle(d, c, speed + yspeed_offset);
       markers[i].set(d/2, (i/2)*d-d/2);
-      markers[i+1] = new Circle(d, c, speed + speed_offset);
+      markers[i+1] = new Circle(d, c, speed + yspeed_offset);
       markers[i+1].set(width-d/2, (i/2)*d-d/2);
     }
   }
   
   void update() {
     for(int i = 0; i < markers.length; i+=2) {
-      markers[i].y_speed = speed + speed_offset;
-      markers[i+1].y_speed = speed + speed_offset;
+      markers[i].y_speed = speed + yspeed_offset;
+      markers[i+1].y_speed = speed + yspeed_offset;
       markers[i].update();
       markers[i+1].update();
       if(markers[i].y >= height + d/2) { // reset

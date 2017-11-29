@@ -6,7 +6,7 @@ class Pattern {
   Pattern() {
     e = new ArrayList<Enermy>();
     switch(id) {
-      case 0: {
+      case 0: { // three slow enermy on one row, only move vertically
         color slow_enermy_color = color(255, 0, 0);
         float slow_enermy_speed = 2;
         e.add(new Enermy(width / 4, 0, slow_enermy_color, 0, slow_enermy_speed, 1000));
@@ -14,7 +14,7 @@ class Pattern {
         e.add(new Enermy(width / 4 * 3, 0, slow_enermy_color, 0, slow_enermy_speed, 1000));
         break;
       }
-      case 1: {
+      case 1: { // three fast enermy on one row, do not fire
         color fast_enermy_color = color(255, 255, 0);
         float fast_enermy_speed = 10;
         e.add(new Enermy(width / 5, 0, fast_enermy_color, 0, fast_enermy_speed, 100000));
@@ -22,7 +22,7 @@ class Pattern {
         e.add(new Enermy(width / 5 * 4, 0, fast_enermy_color, 0, fast_enermy_speed, 100000));
         break;
       }
-      case 2: {
+      case 2: { // four slow enermy on one row, also move horizontally
         color slow_enermy_color = color(255, 0, 255);
         float slow_enermy_speed = 2;
         e.add(new Enermy(width / 5 * 1, 0, slow_enermy_color, 2, slow_enermy_speed, 1000));

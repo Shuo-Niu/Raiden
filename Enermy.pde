@@ -40,7 +40,7 @@ class Enermy {
   }
   
   void fire() {
-    eb.add(new EnermyBullet(x, y, bullet_diameter, 255, bullet_speed));
+    eb.add(new EnermyBullet(x, y, bullet_diameter, 255, 0, bullet_speed));
   }
   
   void explode() {
@@ -48,9 +48,9 @@ class Enermy {
   }
   
   boolean collide(Player p) { // simulate vertices as EnermyBullets to determine collision
-    EnermyBullet b1 = new EnermyBullet(x, y, 0, 0, 0);
-    EnermyBullet b2 = new EnermyBullet(x-20, y-20, 0, 0, 0);
-    EnermyBullet b3 = new EnermyBullet(x+20, y-20, 0, 0, 0);
+    EnermyBullet b1 = new EnermyBullet(x, y, 0, 0, 0, 0);
+    EnermyBullet b2 = new EnermyBullet(x-20, y-20, 0, 0, 0, 0);
+    EnermyBullet b3 = new EnermyBullet(x+20, y-20, 0, 0, 0, 0);
     if(b1.collide(p) || b2.collide(p) || b3.collide(p)) {
       return true;
     } else {

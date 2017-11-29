@@ -6,7 +6,7 @@ float bullet_diameter;
 float bullet_speed;
 ArrayList<Explosion> exp; // explosion animation
 boolean keys[]; // used to handle simultaneously two keys pressed
-float speed_offset; // for future function, accelerate background and enermy_bullet
+float yspeed_offset; // for future function, accelerate background and enermy_bullet
 int time;
 int new_pattern_interval;
 
@@ -29,7 +29,7 @@ void reset() {
   bullet_speed = 5;
   exp = new ArrayList<Explosion>();
   keys = new boolean[4];
-  speed_offset = 0;
+  yspeed_offset = 0;
   new_pattern_interval = 1500;
   time = millis() - new_pattern_interval;
   clock = millis();

@@ -5,10 +5,10 @@ class Circle {
   float c; // color
   float y_speed;
   
-  Circle(float diameter, color c, float speed) {
+  Circle(float diameter, color c, float yspeed) {
     d = diameter;
     this.c = c;
-    y_speed = speed;
+    y_speed = yspeed;
   }
   
   void set(float x, float y) {
