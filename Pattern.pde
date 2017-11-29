@@ -1,5 +1,5 @@
 class Pattern {
-  int number_of_patterns = 3;
+  int number_of_patterns = 4;
   int id = floor((random(0,1) * number_of_patterns));
   ArrayList<Enermy> e;
   
@@ -25,10 +25,18 @@ class Pattern {
       case 2: { // four slow enermy on one row, also move horizontally
         color slow_enermy_color = color(255, 0, 255);
         float slow_enermy_speed = 2;
-        e.add(new Enermy(width / 5 * 1, 0, slow_enermy_color, 2, slow_enermy_speed, 1000));
-        e.add(new Enermy(width / 5 * 2, 0, slow_enermy_color, 2, slow_enermy_speed, 1000));
-        e.add(new Enermy(width / 5 * 3, 0, slow_enermy_color, 2, slow_enermy_speed, 1000));
-        e.add(new Enermy(width / 5 * 4, 0, slow_enermy_color, 2, slow_enermy_speed, 1000));
+        float x_speed = random(0,1) >= 0.5 ? 2 : -2;
+        e.add(new Enermy(width / 5 * 1, 0, slow_enermy_color, x_speed, slow_enermy_speed, 1000));
+        e.add(new Enermy(width / 5 * 2, 0, slow_enermy_color, x_speed, slow_enermy_speed, 1000));
+        e.add(new Enermy(width / 5 * 3, 0, slow_enermy_color, x_speed, slow_enermy_speed, 1000));
+        e.add(new Enermy(width / 5 * 4, 0, slow_enermy_color, x_speed, slow_enermy_speed, 1000));
+        break;
+      }
+      case 3: {
+        color boss_color = color(200);
+        float boss_speed = 1;
+        float x_speed = random(0,1) >= 0.5 ? 2 : -2;
+        e.add(new EnermyBoss(width / 2, 0, boss_color, x_speed, boss_speed, 2000));
         break;
       }
     }
