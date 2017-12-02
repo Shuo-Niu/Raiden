@@ -5,8 +5,9 @@ class Enermy {
   float y_speed;
   int firing_interval; // ms
   int time; // used to determine firing time
+  int hp;
   
-  Enermy(float xx, float yy, color cc, float xspeed, float yspeed, int interval) {
+  Enermy(float xx, float yy, color cc, float xspeed, float yspeed, int interval, int health) {
     //x = random(20, width-20);
     x = xx;
     y = yy;
@@ -15,6 +16,7 @@ class Enermy {
     y_speed = yspeed;
     firing_interval = interval;
     time = millis() - firing_interval/2;
+    hp = health;
   }
   
   void update() {
@@ -56,5 +58,9 @@ class Enermy {
     } else {
       return false;
     }
+  }
+  
+  void loseHP() {
+    hp--;
   }
 }

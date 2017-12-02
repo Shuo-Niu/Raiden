@@ -28,7 +28,7 @@ void reset() {
   bullet_diameter = 5;
   bullet_speed = 5;
   exp = new ArrayList<Explosion>();
-  keys = new boolean[4];
+  keys = new boolean[5];
   yspeed_offset = 0;
   new_pattern_interval = 1500;
   time = millis() - new_pattern_interval;
@@ -141,5 +141,12 @@ void keyPressed() {
   }
   if(key == 'r') {
     reset();
+  }
+  if(key == 'b') {
+    for(int i = 0; i < ptn.size(); i++) {
+      for(int j = 0; j < ptn.get(i).e.size(); j++) {
+        ptn.get(i).e.get(j).loseHP();
+      }
+    }  
   }
 }

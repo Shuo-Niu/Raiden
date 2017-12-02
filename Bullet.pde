@@ -16,9 +16,9 @@ class Bullet extends Circle {
         for(int i = 0; i < ptn.get(ptnnum).e.size(); i++) {
           if(this.collide(ptn.get(ptnnum).e.get(i))) {
             used = true;
-            ptn.get(ptnnum).e.get(i).explode();
-            ptn.get(ptnnum).e.remove(i);
-            //ptn.e.add(new Enermy());
+            //ptn.get(ptnnum).e.get(i).explode();
+            //ptn.get(ptnnum).e.remove(i);
+            ptn.get(ptnnum).e.get(i).loseHP();
             this.c = 0;
           }
         }
