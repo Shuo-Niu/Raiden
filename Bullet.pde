@@ -27,7 +27,7 @@ class Bullet extends Circle {
   }
   
   boolean collide(Enermy e) {
-    if(x <= e.x + 20 && x >= e.x - 20 && y <= e.y && y >= e.y - 20) {
+    if(x <= e.x + e.wing_length && x >= e.x - e.wing_length && y <= e.y && y >= e.y - e.wing_length) {
       if(x >= e.x && x + y <= e.x + e.y) {
         return true;
       } else if(x < e.x && e.y - y >= e.x - x) {

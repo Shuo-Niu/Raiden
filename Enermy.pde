@@ -6,8 +6,9 @@ class Enermy {
   int firing_interval; // ms
   int time; // used to determine firing time
   int hp;
+  float wing_length;
   
-  Enermy(float xx, float yy, color cc, float xspeed, float yspeed, int interval, int health) {
+  Enermy(float xx, float yy, color cc, float xspeed, float yspeed, int interval, int health, float wlength) {
     //x = random(20, width-20);
     x = xx;
     y = yy;
@@ -17,11 +18,12 @@ class Enermy {
     firing_interval = interval;
     time = millis() - firing_interval/2;
     hp = health;
+    wing_length = wlength;
   }
   
   void update() {
     x += x_speed;
-    if(x > width - 20 || x < 20) {
+    if(x > width - wing_length || x < wing_length) {
       x_speed *= -1;
     }
     
@@ -38,7 +40,7 @@ class Enermy {
   void show() {
     fill(c);
     noStroke();
-    triangle(x-20,y-20,x,y,x+20,y-20);
+    triangle(x-wing_length,y-wing_length,x,y,x+wing_length,y-wing_length);
   }
   
   void fire() {
@@ -51,8 +53,8 @@ class Enermy {
   
   boolean collide(Player p) { // simulate vertices as EnermyBullets to determine collision
     EnermyBullet b1 = new EnermyBullet(x, y, 0, 0, 0, 0);
-    EnermyBullet b2 = new EnermyBullet(x-20, y-20, 0, 0, 0, 0);
-    EnermyBullet b3 = new EnermyBullet(x+20, y-20, 0, 0, 0, 0);
+    EnermyBullet b2 = new EnermyBullet(x-wing_length, y-wing_length, 0, 0, 0, 0);
+    EnermyBullet b3 = new EnermyBullet(x+wing_length, y-wing_length, 0, 0, 0, 0);
     if(b1.collide(p) || b2.collide(p) || b3.collide(p)) {
       return true;
     } else {

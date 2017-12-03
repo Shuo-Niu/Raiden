@@ -1,8 +1,8 @@
 class EnermyBoss extends Enermy {
   color[] c_array;
   
-  EnermyBoss(float x, float y, color clr, float xspeed, float yspeed, int interval, int health) {
-    super(x, y, clr, xspeed, yspeed, interval, health);
+  EnermyBoss(float x, float y, color clr, float xspeed, float yspeed, int interval, int health, float wlength) {
+    super(x, y, clr, xspeed, yspeed, interval, health, wlength);
     c_array = new color[hp];
     for(int i = 0; i < hp; i++) {
       c_array[i] = lerpColor(color(255, 0, 0), c, (float)(i + 1) / (float)hp);
@@ -13,7 +13,7 @@ class EnermyBoss extends Enermy {
   void show(){
     fill(c_array[hp-1]);
     noStroke();
-    triangle(x-20,y-20,x,y,x+20,y-20);
+    triangle(x-wing_length,y-wing_length,x,y,x+wing_length,y-wing_length);
   }
   
   @Override
