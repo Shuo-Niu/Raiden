@@ -28,7 +28,7 @@ void reset() {
   bullet_diameter = 5;
   bullet_speed = 5;
   exp = new ArrayList<Explosion>();
-  keys = new boolean[5];
+  keys = new boolean[4];
   yspeed_offset = 0;
   new_pattern_interval = 1500;
   time = millis() - new_pattern_interval;
